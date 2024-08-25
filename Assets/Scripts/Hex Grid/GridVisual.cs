@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridVisual : MonoBehaviour
 {
+    private GridObject gridObject; 
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,14 @@ public class GridVisual : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetGridObject(GridObject gridObject)
+    {
+        this.gridObject = gridObject;
+    }
+    public GridObject GetGridObject()
+    {
+        return gridObject;
     }
 }
