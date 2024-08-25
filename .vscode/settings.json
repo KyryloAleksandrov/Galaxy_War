@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Galaxy War.sln"
+    "dotnet.defaultSolution": "Galaxy_War.sln"
 }
