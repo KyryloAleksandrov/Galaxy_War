@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class GridVisual : MonoBehaviour
 {
-    private GridObject gridObject; 
+    private GridObject gridObject;
+    [SerializeField] private SpaceWaypoint[] spaceWaypoints; 
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int i = 0; i < spaceWaypoints.Length; i++)
+        {
+            gridObject.GetSpaceWaypoints()[i] = spaceWaypoints[i];
+        }
     }
 
     // Update is called once per frame

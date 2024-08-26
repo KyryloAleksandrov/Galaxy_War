@@ -30,12 +30,14 @@ public class GameMaster : MonoBehaviour
 
         gridSystem = mapFunctionalService.GridSystem;
         gridObjects = gridSystem.GetGridObjectArray();
+
+        InitializeGridMap();
+        gridSystem.DisplayCoordinates(coordinatesPrefab);
     }
     // Start is called before the first frame update
     void Start()
     {
-        InitializeGridMap();
-        gridSystem.DisplayCoordinates(coordinatesPrefab);
+        
     }
 
     // Update is called once per frame

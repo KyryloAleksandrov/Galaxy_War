@@ -7,10 +7,14 @@ public class GridObject
     private GridSystem gridSystem;
     private GridPosition gridPosition;
 
+    private SpaceWaypoint[] spaceWaypoints;
+    private const int SPACE_WAYPOINT_LIMIT = 8;
+
     public GridObject(GridSystem gridSystem, GridPosition gridPosition)
     {
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
+        spaceWaypoints = new SpaceWaypoint[SPACE_WAYPOINT_LIMIT];
     }
 
     public GridPosition GetGridPosition()
@@ -22,4 +26,13 @@ public class GridObject
     {
         return gridPosition.ToString();
     }
+
+    public SpaceWaypoint[] GetSpaceWaypoints()
+    {
+        return spaceWaypoints;
+    }
+    /*public void AddSpaceWaypoint(SpaceWaypoint spaceWaypoint)
+    {
+        spaceWaypoints.Add(spaceWaypoint);
+    }*/
 }
