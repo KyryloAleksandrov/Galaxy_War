@@ -8,7 +8,7 @@ public class GridObject
     private GridPosition gridPosition;
 
     private List<SpaceWaypoint> spaceWaypoints;
-    private Dictionary<UnitType, List<BaseUnit>> listOfUnits;
+    private List<Ship> listOfShips;
     private const int SPACE_WAYPOINT_LIMIT = 8;
 
     public GridObject(GridSystem gridSystem, GridPosition gridPosition)
@@ -16,9 +16,7 @@ public class GridObject
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
         spaceWaypoints = new List<SpaceWaypoint>();
-        listOfUnits = new Dictionary<UnitType, List<BaseUnit>>();
-
-        
+        listOfShips = new List<Ship>();
     }
 
     public GridPosition GetGridPosition()
@@ -55,16 +53,10 @@ public class GridObject
 
     public void AddUnit(Transform unitPrefab, UnitType unitType)
     {
-        if (!listOfUnits.ContainsKey(unitType))
-        {
-            List<BaseUnit> units = new List<BaseUnit>();
-            listOfUnits.Add(unitType, units);
-        }
-
-        listOfUnits[unitType].Add(unitPrefab.GetComponent<BaseUnit>());
+        listOfShips.Add(unitPrefab.GetComponent<Ship>());
 
         Debug.Log("Unit added to grid Object");
-        foreach(var unit in listOfUnits[unitType])
+        foreach(var unit in listOfShips)
         {
             Debug.Log(unit);
         }

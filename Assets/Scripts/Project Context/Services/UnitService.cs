@@ -43,6 +43,7 @@ public class UnitService : IUnitService
 
         GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
         gridObjectToSpawn.AddUnit(unitPrefab, GetUnitType(unitPrefab));
+        availableWaypoint.OnShipSpawn(unitPrefab, GetUnitType(unitPrefab));
         OnUnitSpawn?.Invoke(unitPrefab, GetUnitType(unitPrefab));
     }
 

@@ -55,6 +55,7 @@ public class GameMaster : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.L))
         {
             unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));
+            return;
         }
     }
 }
