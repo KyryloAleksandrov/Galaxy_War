@@ -6,7 +6,7 @@ using UnityEngine;
 
 public interface IUnitService
 {
-    Dictionary<UnitType, List<BaseUnit>> listOfUnits {get; set;}
+    List<Ship> listOfUnits {get; set;}
 
     Action<Transform, UnitType> OnUnitSpawn {get; set;}
 
@@ -14,7 +14,7 @@ public interface IUnitService
 }
 public class UnitService : IUnitService
 {
-    public Dictionary<UnitType, List<BaseUnit>> listOfUnits {get; set;}
+    public List<Ship> listOfUnits {get; set;}
 
     public Action<Transform, UnitType> OnUnitSpawn {get; set;}
 
@@ -27,7 +27,7 @@ public class UnitService : IUnitService
     {
         this.MapFunctionalService = MapFunctionalService;
         this.ConfigService = ConfigService;
-        listOfUnits = new Dictionary<UnitType, List<BaseUnit>>();
+        listOfUnits = new List<Ship>();
 
         shipSpawnOffset = new Vector3(0,3,0);
 
@@ -42,6 +42,7 @@ public class UnitService : IUnitService
         SpaceWaypoint availableWaypoint = gridObjectToSpawn.GetAvailableSpaceWaypoint();
 
         GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
+        gridObjectToSpawn.AddUnit(unitPrefab, GetUnitType(unitPrefab));
         OnUnitSpawn?.Invoke(unitPrefab, GetUnitType(unitPrefab));
     }
 
@@ -62,16 +63,10 @@ public class UnitService : IUnitService
 
     public void AddUnit(Transform unitPrefab, UnitType unitType)
     {
-        if (!listOfUnits.ContainsKey(unitType))
-        {
-            List<BaseUnit> units = new List<BaseUnit>();
-            listOfUnits.Add(unitType, units);
-        }
-
-        listOfUnits[unitType].Add(unitPrefab.GetComponent<BaseUnit>());
+        listOfUnits.Add(unitPrefab.GetComponent<Ship>());
 
         Debug.Log("Unit added to list of all units");
-        foreach(var unit in listOfUnits[unitType])
+        foreach(var unit in listOfUnits)
         {
             Debug.Log(unit);
         }

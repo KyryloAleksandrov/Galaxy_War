@@ -7,7 +7,7 @@ public class GridObject
     private GridSystem gridSystem;
     private GridPosition gridPosition;
 
-    private Dictionary<WaypointType, List<BaseWaypoint>> listOfWaypoints;
+    private List<SpaceWaypoint> spaceWaypoints;
     private Dictionary<UnitType, List<BaseUnit>> listOfUnits;
     private const int SPACE_WAYPOINT_LIMIT = 8;
 
@@ -15,10 +15,10 @@ public class GridObject
     {
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
-        listOfWaypoints = new Dictionary<WaypointType, List<BaseWaypoint>>();
+        spaceWaypoints = new List<SpaceWaypoint>();
         listOfUnits = new Dictionary<UnitType, List<BaseUnit>>();
 
-        ProjectContext.Instance.UnitService.OnUnitSpawn += AddUnit;
+        
     }
 
     public GridPosition GetGridPosition()
@@ -31,9 +31,9 @@ public class GridObject
         return gridPosition.ToString();
     }
 
-    public Dictionary<WaypointType, List<BaseWaypoint>> GetSpaceWaypoints()
+    public List<SpaceWaypoint> GetSpaceWaypoints()
     {
-        return listOfWaypoints;
+        return spaceWaypoints;
     }
     /*public void AddSpaceWaypoint(SpaceWaypoint spaceWaypoint)
     {
@@ -42,23 +42,15 @@ public class GridObject
     
     public SpaceWaypoint GetAvailableSpaceWaypoint()
     {
-        SpaceWaypoint availableWaypoint = null;
-
-        if(!listOfWaypoints.ContainsKey(WaypointType.Space))
+        foreach(var spaceWaypoint in spaceWaypoints)
         {
-            Debug.LogAssertion("No space waypoints detected on the grid object " + ToString());
-            return null;
-        }
-
-        foreach(var spaceWaypoint in listOfWaypoints[WaypointType.Space])
-        {
-            if(!spaceWaypoint.GetHasShip())
+            if(spaceWaypoint.GetHasShip() == false)
             {
-                availableWaypoint = (SpaceWaypoint)spaceWaypoint;
+                return spaceWaypoint;
             }
         }
-
-        return availableWaypoint;
+        Debug.LogAssertion("No space waypoint for hex " + ToString());
+        return null;
     }
 
     public void AddUnit(Transform unitPrefab, UnitType unitType)

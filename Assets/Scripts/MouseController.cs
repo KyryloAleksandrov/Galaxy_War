@@ -34,10 +34,10 @@ public class MouseController : MonoBehaviour
 
         GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
 
-        /*Debug.Log(gridObject.ToString());
-        foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints()[WaypointType.Space])
+        Debug.Log(gridObject.ToString());
+        foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints())
         {
-            Debug.Log(spaceWaypoint);
-        }*/
+            Debug.Log(spaceWaypoint.GetHasShip());
+        }
     }
 }

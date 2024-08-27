@@ -370,8 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c5e7c1c964d04e9941ba4f9ac31b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinatesPrefab: {fileID: 8576449017008292263, guid: 386b6274d6880a547b401af77258845a, type: 3}
-  hexPrefab: {fileID: 6278234839548677895, guid: b1c3f7fad87c6a241b00e4b9ffe10176, type: 3}
+  shiptoSpawn: {fileID: 5579957690284455516, guid: 0b59e1284955c5e49b481f0f141505a1, type: 3}
 --- !u!4 &1168926354
 Transform:
   m_ObjectHideFlags: 0

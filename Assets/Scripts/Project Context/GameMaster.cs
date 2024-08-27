@@ -40,18 +40,21 @@ public class GameMaster : MonoBehaviour
         coordinatesPrefab = mapVisualService.coordinatesPrefab;
 
         mapVisualService.InitializeGridMap(hexPrefab);
-        gridSystem.DisplayCoordinates(coordinatesPrefab);
+        gridSystem.DisplayCoordinates(coordinatesPrefab);        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));
+        }
     }
 }
