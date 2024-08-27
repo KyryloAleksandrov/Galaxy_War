@@ -9,9 +9,15 @@ public class GridVisual : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(!gridObject.GetSpaceWaypoints().ContainsKey(WaypointType.Space))
+        {
+            List<BaseWaypoint> spaceWaypoints = new List<BaseWaypoint>();
+            gridObject.GetSpaceWaypoints().Add(WaypointType.Space, spaceWaypoints);
+        }
+
         for(int i = 0; i < spaceWaypoints.Length; i++)
         {
-            gridObject.GetSpaceWaypoints()[i] = spaceWaypoints[i];
+            gridObject.GetSpaceWaypoints()[WaypointType.Space].Add(spaceWaypoints[i]);
         }
     }
 

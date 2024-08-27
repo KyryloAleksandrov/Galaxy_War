@@ -20,11 +20,15 @@ public class ProjectContext
     public IMapFunctionalService MapFunctionalService {get; private set;}
     public IMapVisualService MapVisualService {get; private set;}
 
-    public void Initialize(MapConfig mapConfig)
+    public IUnitService UnitService {get; private set;}
+
+    public void Initialize(MapConfig mapConfig, UnitConfig unitConfig)
     {
-        ConfigService = new ConfigService(mapConfig);
+        ConfigService = new ConfigService(mapConfig, unitConfig);
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
-        MapVisualService = new MapVisualService(MapFunctionalService);
+        MapVisualService = new MapVisualService(MapFunctionalService, ConfigService);
+
+        UnitService = new UnitService(MapFunctionalService, ConfigService);
     }
 }

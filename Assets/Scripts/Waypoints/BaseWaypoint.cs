@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class BaseWaypoint : MonoBehaviour
 {
+    protected WaypointType waypointType;
     protected GridObject gridObject;
     protected bool hasShip;
 
@@ -12,6 +13,10 @@ public abstract class BaseWaypoint : MonoBehaviour
         hasShip = false;        //watch for possible conflicts with other classes
     }
 
+    public virtual WaypointType GetWaypointType()
+    {
+        return waypointType;
+    }
     public virtual void SetGridObject(GridObject gridObject)
     {
         this.gridObject = gridObject;

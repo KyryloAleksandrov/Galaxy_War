@@ -11,9 +11,9 @@ public class MapFunctionalService : IMapFunctionalService
 {
     public GridSystem GridSystem {get; private set;}
 
-    public MapFunctionalService(IConfigService configService)
+    public MapFunctionalService(IConfigService ConfigService)
     {
-        var MapData = configService.MapData;
+        var MapData = ConfigService.MapData;
         GridSystem = new GridSystem(MapData.width, MapData.height, MapData.hexSize);
     }
 }

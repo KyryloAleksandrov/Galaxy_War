@@ -9,12 +9,15 @@ public class GameMaster : MonoBehaviour
     private IMapFunctionalService mapFunctionalService;
     private IMapVisualService mapVisualService;
 
-    private GridSystem gridSystem;
-    private GridObject[,] gridObjects;
-    private GridVisual[,] gridVisualArray;
+    private IUnitService unitService;
 
-    [SerializeField] private Transform coordinatesPrefab;
-    [SerializeField] private Transform hexPrefab;
+    private GridSystem gridSystem;
+    //private GridObject[,] gridObjects;  //not sure if I need this one  
+
+    private Transform coordinatesPrefab;
+    private Transform hexPrefab;
+
+    [SerializeField] private Transform shiptoSpawn;
 
     void Awake()
     {
@@ -28,42 +31,27 @@ public class GameMaster : MonoBehaviour
         mapFunctionalService = ProjectContext.Instance.MapFunctionalService;
         mapVisualService = ProjectContext.Instance.MapVisualService;
 
-        gridSystem = mapFunctionalService.GridSystem;
-        gridObjects = gridSystem.GetGridObjectArray();
+        unitService = ProjectContext.Instance.UnitService;
 
-        InitializeGridMap();
+        gridSystem = mapFunctionalService.GridSystem;
+        //gridObjects = gridSystem.GetGridObjectArray();
+
+        hexPrefab = mapVisualService.hexPrefab;
+        coordinatesPrefab = mapVisualService.coordinatesPrefab;
+
+        mapVisualService.InitializeGridMap(hexPrefab);
         gridSystem.DisplayCoordinates(coordinatesPrefab);
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    private void InitializeGridMap()
-    {
-        gridVisualArray = new GridVisual[gridObjects.GetLength(0), gridObjects.GetLength(1)];
-
-        for (int x = 0; x < gridObjects.GetLength(0); x++)
-        {
-            for (int z = 0; z < gridObjects.GetLength(1); z++)
-            {
-                GridPosition gridPosition = gridObjects[x,z].GetGridPosition();
-
-                Transform gridVisualTransform = Instantiate(hexPrefab, gridSystem.GetWorldPosition(gridPosition), Quaternion.identity);
-
-                GridVisual gridVisual = gridVisualTransform.GetComponent<GridVisual>();
-                gridVisualArray[x,z] = gridVisual;
-
-                GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-                gridVisualArray[x,z].SetGridObject(gridObject);
-            }
-        }
     }
 }

@@ -16,3 +16,5 @@ MonoBehaviour:
     width: 10
     height: 10
     hexSize: 10
+    hexPrefab: {fileID: 6278234839548677895, guid: b1c3f7fad87c6a241b00e4b9ffe10176, type: 3}
+    coordintaesPrefab: {fileID: 8576449017008292263, guid: 386b6274d6880a547b401af77258845a, type: 3}
