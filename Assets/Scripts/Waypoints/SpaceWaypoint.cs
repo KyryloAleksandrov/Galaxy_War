@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceWaypoint : MonoBehaviour
+public class SpaceWaypoint : BaseWaypoint
 {
     private Ship ship;
-    private WaypointType waypointType;
-    private bool hasShip;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +18,7 @@ public class SpaceWaypoint : MonoBehaviour
     {
         
     }
-
-    public bool GetHasShip()
-    {
-        return hasShip;
-    }
+    
     public void OnShipSpawn(Transform unitPrefab, UnitType unitType)
     {
             hasShip = true;
