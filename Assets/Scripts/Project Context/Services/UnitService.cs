@@ -6,7 +6,7 @@ using UnityEngine;
 
 public interface IUnitService
 {
-    List<Ship> listOfUnits {get; set;}
+    List<Ship> listOfShips {get; set;}
 
     Action<Transform, UnitType> OnUnitSpawn {get; set;}
 
@@ -14,7 +14,7 @@ public interface IUnitService
 }
 public class UnitService : IUnitService
 {
-    public List<Ship> listOfUnits {get; set;}
+    public List<Ship> listOfShips {get; set;}
 
     public Action<Transform, UnitType> OnUnitSpawn {get; set;}
 
@@ -27,7 +27,7 @@ public class UnitService : IUnitService
     {
         this.MapFunctionalService = MapFunctionalService;
         this.ConfigService = ConfigService;
-        listOfUnits = new List<Ship>();
+        listOfShips = new List<Ship>();
 
         shipSpawnOffset = new Vector3(0,3,0);
 
@@ -64,10 +64,10 @@ public class UnitService : IUnitService
 
     public void AddUnit(Transform unitPrefab, UnitType unitType)
     {
-        listOfUnits.Add(unitPrefab.GetComponent<Ship>());
+        listOfShips.Add(unitPrefab.GetComponent<Ship>());
 
         Debug.Log("Unit added to list of all units");
-        foreach(var unit in listOfUnits)
+        foreach(var unit in listOfShips)
         {
             Debug.Log(unit);
         }

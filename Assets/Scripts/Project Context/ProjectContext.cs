@@ -21,14 +21,18 @@ public class ProjectContext
     public IMapVisualService MapVisualService {get; private set;}
 
     public IUnitService UnitService {get; private set;}
+    public ILayerMasksService LayerMasksService {get; private set;}
+    public IMouseService MouseService   {get; private set;}
 
-    public void Initialize(MapConfig mapConfig, UnitConfig unitConfig)
+    public void Initialize(MapConfig mapConfig, UnitConfig unitConfig, LayerMasksConfig layerMasksConfig)
     {
-        ConfigService = new ConfigService(mapConfig, unitConfig);
+        ConfigService = new ConfigService(mapConfig, unitConfig, layerMasksConfig);
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
         MapVisualService = new MapVisualService(MapFunctionalService, ConfigService);
 
         UnitService = new UnitService(MapFunctionalService, ConfigService);
+        LayerMasksService = new LayerMasksService(ConfigService);
+        MouseService = new MouseService(MapFunctionalService, LayerMasksService);
     }
 }

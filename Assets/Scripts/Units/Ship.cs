@@ -9,6 +9,7 @@ public class Ship : BaseUnit
     void Start()
     {
         unitType = UnitType.Ship;
+        Deselect();
     }
 
     // Update is called once per frame

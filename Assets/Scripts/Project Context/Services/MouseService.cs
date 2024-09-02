@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseController : MonoBehaviour
+public interface IMouseService
 {
-    [SerializeField] private LayerMask hexGridLayerMask;
+    LayerMask hexGridLayerMask {get; set;}
+    void IdleCursor();
+}
+public class MouseService : IMouseService
+{
+    public LayerMask hexGridLayerMask {get; set;}
     private GridSystem gridSystem;
     private GridVisual lastGridVisual;
-    // Start is called before the first frame update
-    void Start()
+
+    public MouseService(IMapFunctionalService mapFunctionalService, ILayerMasksService layerMasksService)
     {
-        gridSystem = ProjectContext.Instance.MapFunctionalService.GridSystem;
+        gridSystem = mapFunctionalService.GridSystem;
+        hexGridLayerMask = layerMasksService.hexGridMask;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        if(EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
-        
-        HighlightOnHover(GetFirstLayerMask());
-    }
     public void ClickOnHex()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -40,10 +35,10 @@ public class MouseController : MonoBehaviour
         GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
 
         Debug.Log(gridObject.ToString());
-        foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints())
+        /*foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints())
         {
             Debug.Log(spaceWaypoint.GetHasShip());
-        }
+        }*/
     }
 
     public void HighlightHex()
@@ -109,5 +104,15 @@ public class MouseController : MonoBehaviour
         }
 
         return hitLayerMask;
+    }
+
+    public void IdleCursor()
+    {
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        
+        HighlightOnHover(GetFirstLayerMask());
     }
 }

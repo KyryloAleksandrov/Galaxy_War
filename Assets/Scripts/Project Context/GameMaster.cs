@@ -10,6 +10,7 @@ public class GameMaster : MonoBehaviour
     private IMapVisualService mapVisualService;
 
     private IUnitService unitService;
+    private IMouseService mouseService;
 
     private GridSystem gridSystem;
     //private GridObject[,] gridObjects;  //not sure if I need this one  
@@ -30,6 +31,7 @@ public class GameMaster : MonoBehaviour
 
         mapFunctionalService = ProjectContext.Instance.MapFunctionalService;
         mapVisualService = ProjectContext.Instance.MapVisualService;
+        mouseService = ProjectContext.Instance.MouseService;
 
         unitService = ProjectContext.Instance.UnitService;
 
@@ -52,6 +54,8 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        mouseService.IdleCursor();
         if(Input.GetKeyDown(KeyCode.L))
         {
             unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));

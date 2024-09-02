@@ -7,9 +7,10 @@ public class Boot : MonoBehaviour
 {
     [SerializeField] private MapConfig MapConfig;
     [SerializeField] private UnitConfig UnitConfig;
+    [SerializeField] private LayerMasksConfig layerMasksConfig;
     void Awake()
     {
-        ProjectContext.Instance.Initialize(MapConfig, UnitConfig);
+        ProjectContext.Instance.Initialize(MapConfig, UnitConfig, layerMasksConfig);
     }
 
     private IEnumerator Start()
