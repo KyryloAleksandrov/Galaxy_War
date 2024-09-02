@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ship : BaseUnit
+public class BaseUnit : MonoBehaviour
 {
-    
+    protected UnitType unitType;
     // Start is called before the first frame update
     void Start()
     {
-        unitType = UnitType.Ship;
+        
     }
 
     // Update is called once per frame
@@ -17,5 +17,8 @@ public class Ship : BaseUnit
         
     }
 
-    
+    protected virtual UnitType GetUnitType()
+    {
+        return unitType;
+    }
 }
