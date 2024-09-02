@@ -46,6 +46,7 @@ public class MapVisualService : IMapVisualService
                 gridVisualArray[x,z] = gridVisual;
 
                 GridObject gridObject = MapFunctionalService.GridSystem.GetGridObject(gridPosition);
+                gridObject.SetGridVisual(gridVisual);
                 gridVisualArray[x,z].SetGridObject(gridObject);
             }
         }

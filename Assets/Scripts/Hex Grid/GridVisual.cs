@@ -12,9 +12,18 @@ public class GridVisual : MonoBehaviour
     {
         
     }
+    void OnEnable()
+    {
+        //gridObject.SetGridVisual(this);
+        /*for(int i = 0; i < spaceWaypoints.Length; i++)
+        {
+            gridObject.GetSpaceWaypoints().Add(spaceWaypoints[i]);
+        }
+        DeHighlight();*/
+    }
     void Start()
     {
-        gridObject.SetGridVisual(this);
+        //gridObject.SetGridVisual(this);
         for(int i = 0; i < spaceWaypoints.Length; i++)
         {
             gridObject.GetSpaceWaypoints().Add(spaceWaypoints[i]);

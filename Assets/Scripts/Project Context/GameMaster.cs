@@ -48,7 +48,7 @@ public class GameMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));
     }
 
     // Update is called once per frame
