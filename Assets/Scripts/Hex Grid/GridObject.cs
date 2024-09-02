@@ -6,6 +6,7 @@ public class GridObject
 {
     private GridSystem gridSystem;
     private GridPosition gridPosition;
+    private GridVisual gridVisual;
 
     private List<SpaceWaypoint> spaceWaypoints;
     private List<Ship> listOfShips;
@@ -22,6 +23,15 @@ public class GridObject
     public GridPosition GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public GridVisual GetGridVisual()
+    {
+        return gridVisual;
+    }
+    public void SetGridVisual(GridVisual gridVisual)
+    {
+        this.gridVisual = gridVisual;
     }
 
     public override string ToString()
