@@ -35,10 +35,10 @@ public class MouseService : IMouseService
         GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
 
         Debug.Log(gridObject.ToString());
-        /*foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints())
+        foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints())
         {
             Debug.Log(spaceWaypoint.GetHasShip());
-        }*/
+        }
     }
 
     public void HighlightHex()

@@ -41,6 +41,11 @@ public class UnitService : IUnitService
 
         SpaceWaypoint availableWaypoint = gridObjectToSpawn.GetAvailableSpaceWaypoint();
 
+        if(availableWaypoint == null)
+        {
+            return;
+        }
+
         GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
         gridObjectToSpawn.AddUnit(unitPrefab, GetUnitType(unitPrefab));
         availableWaypoint.OnShipSpawn(unitPrefab, GetUnitType(unitPrefab));

@@ -43,10 +43,13 @@ public class GridObject
     {
         return spaceWaypoints;
     }
-    /*public void AddSpaceWaypoint(SpaceWaypoint spaceWaypoint)
+    public void AddSpaceWaypoints(GridVisual gridVisual)
     {
-        spaceWaypoints.Add(spaceWaypoint);
-    }*/
+        for(int i = 0; i < gridVisual.GetSpaceWaypoints().Length; i++)
+        {
+            spaceWaypoints.Add(gridVisual.GetSpaceWaypoints()[i]);
+        }
+    }
     
     public SpaceWaypoint GetAvailableSpaceWaypoint()
     {

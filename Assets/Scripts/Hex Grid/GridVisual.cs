@@ -24,10 +24,10 @@ public class GridVisual : MonoBehaviour
     void Start()
     {
         //gridObject.SetGridVisual(this);
-        for(int i = 0; i < spaceWaypoints.Length; i++)
+        /*for(int i = 0; i < spaceWaypoints.Length; i++)
         {
             gridObject.GetSpaceWaypoints().Add(spaceWaypoints[i]);
-        }
+        }*/
         DeHighlight();
     }
 
@@ -46,6 +46,10 @@ public class GridVisual : MonoBehaviour
         return gridObject;
     }
 
+    public SpaceWaypoint[] GetSpaceWaypoints()
+    {
+        return spaceWaypoints;
+    }
     public void Highlight()
     {
         highlighted.enabled = true;

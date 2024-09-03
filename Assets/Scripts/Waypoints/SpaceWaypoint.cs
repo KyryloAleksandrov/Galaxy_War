@@ -5,11 +5,16 @@ using UnityEngine;
 public class SpaceWaypoint : BaseWaypoint
 {
     private Ship ship;
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         waypointType = WaypointType.Space;
         hasShip = false;
+    }
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        
         //ProjectContext.Instance.UnitService.OnUnitSpawn += OnShipSpawn;
     }
 
