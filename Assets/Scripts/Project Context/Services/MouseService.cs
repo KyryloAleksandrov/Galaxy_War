@@ -6,11 +6,14 @@ using UnityEngine.EventSystems;
 public interface IMouseService
 {
     LayerMask hexGridLayerMask {get; set;}
+    LayerMask shipLayerMask {get; set;}
     void IdleCursor();
+    LayerMask GetFirstLayerMask();
 }
 public class MouseService : IMouseService
 {
     public LayerMask hexGridLayerMask {get; set;}
+    public LayerMask shipLayerMask {get; set;}
     private GridSystem gridSystem;
     private GridVisual lastGridVisual;
 
@@ -18,6 +21,7 @@ public class MouseService : IMouseService
     {
         gridSystem = mapFunctionalService.GridSystem;
         hexGridLayerMask = layerMasksService.hexGridMask;
+        shipLayerMask = layerMasksService.shipsMask;
     }
 
     public void ClickOnHex()

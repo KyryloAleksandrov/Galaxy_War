@@ -56,6 +56,10 @@ public class GameMaster : MonoBehaviour
     {
 
         mouseService.IdleCursor();
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(unitService.TrySelectUnit()) return;
+        }
         if(Input.GetKeyDown(KeyCode.L))
         {
             unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));

@@ -68,7 +68,7 @@ public class GridObject
     {
         listOfShips.Add(unitPrefab.GetComponent<Ship>());
 
-        Debug.Log("Unit added to grid Object");
+        //Debug.Log("Unit added to grid Object");
         foreach(var unit in listOfShips)
         {
             Debug.Log(unit);

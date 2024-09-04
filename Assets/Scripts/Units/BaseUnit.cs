@@ -19,17 +19,17 @@ public class BaseUnit : MonoBehaviour
         
     }
 
-    protected virtual UnitType GetUnitType()
+    public virtual UnitType GetUnitType()
     {
         return unitType;
     }
 
-    protected virtual void Deselect()
+    public virtual void Deselect()
     {
         selectedVisual.enabled = false;
     }
 
-    protected virtual void Select()
+    public virtual void Select()
     {
         selectedVisual.enabled = true;
     }

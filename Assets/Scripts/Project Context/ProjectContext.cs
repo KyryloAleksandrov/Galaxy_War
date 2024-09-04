@@ -31,8 +31,9 @@ public class ProjectContext
         MapFunctionalService = new MapFunctionalService(ConfigService);
         MapVisualService = new MapVisualService(MapFunctionalService, ConfigService);
 
-        UnitService = new UnitService(MapFunctionalService, ConfigService);
         LayerMasksService = new LayerMasksService(ConfigService);
         MouseService = new MouseService(MapFunctionalService, LayerMasksService);
+        UnitService = new UnitService(MapFunctionalService, ConfigService, MouseService);
+        
     }
 }

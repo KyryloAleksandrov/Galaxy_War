@@ -27,7 +27,7 @@ public class SpaceWaypoint : BaseWaypoint
     public void OnShipSpawn(Transform unitPrefab, UnitType unitType)
     {
             hasShip = true;
-            Debug.Log("Waypoint now has ship");
+            //Debug.Log("Waypoint now has ship");
             if(ship != null)
             {
                 Debug.Log(ship);
