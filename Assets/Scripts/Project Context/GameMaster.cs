@@ -54,13 +54,15 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         mouseService.IdleCursor();
+
         if(Input.GetMouseButtonDown(0))
         {
             if(unitService.TrySelectUnit()) return;
         }
-        if(Input.GetKeyDown(KeyCode.L))
+
+
+        if(Input.GetKeyDown(KeyCode.L))     //debug
         {
             unitService.SpawnUnit(shiptoSpawn, new GridPosition(0, 0));
             return;

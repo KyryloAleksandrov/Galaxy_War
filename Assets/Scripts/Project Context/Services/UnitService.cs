@@ -80,10 +80,10 @@ public class UnitService : IUnitService
         listOfShips.Add(unitPrefab.GetComponent<Ship>());
 
         //Debug.Log("Unit added to list of all units");
-        foreach(var unit in listOfShips)
+        /*foreach(var unit in listOfShips)
         {
             Debug.Log(unit);
-        }
+        }*/
     }
 
     public bool TrySelectUnit()
