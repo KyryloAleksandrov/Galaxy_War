@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 5579957690284455516}
   - component: {fileID: 6487919762874307188}
   - component: {fileID: 6114652468959612657}
+  - component: {fileID: 8781332496478872892}
   m_Layer: 7
   m_Name: PrototypeShip
   m_TagString: Untagged
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 2343281284625002050}
+  moveAction: {fileID: 8781332496478872892}
 --- !u!65 &6114652468959612657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -236,6 +238,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 4.5121765}
   m_Center: {x: 0, y: 0, z: 0.2529273}
+--- !u!114 &8781332496478872892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2224242215052050932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c3c45764a5d1d4caaa911b4d3141f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingSpeed: 0
+  stoppingDistance: 0
+  rotatingSpeed: 0
+  shipYOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8748583355420187725
 GameObject:
   m_ObjectHideFlags: 0

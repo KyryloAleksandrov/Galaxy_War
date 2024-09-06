@@ -44,13 +44,13 @@ public class MouseService : IMouseService
             Debug.Log(spaceWaypoint.GetHasShip());
         }*/
 
-        List<GridPosition> neigbours = ProjectContext.Instance.MapFunctionalService.GetNeighbourGridPositions(currentGridPosition, 3);
+        /*List<GridPosition> neigbours = ProjectContext.Instance.MapFunctionalService.GetNeighbourGridPositions(currentGridPosition, 3);
         foreach(var position in neigbours)
         {
             GridVisual neigbourHex = gridSystem.GetGridObject(position).GetGridVisual();
             neigbourHex.Highlight();
             Debug.Log(position.ToString());
-        }
+        }*/
     }
 
     public void HighlightHex()

@@ -24,13 +24,8 @@ public class SpaceWaypoint : BaseWaypoint
         
     }
     
-    public void OnShipSpawn(Transform unitPrefab, UnitType unitType)
+    public void AddShip()
     {
-            hasShip = true;
-            //Debug.Log("Waypoint now has ship");
-            if(ship != null)
-            {
-                Debug.Log(ship);
-            }
+        hasShip = true;
     }
 }

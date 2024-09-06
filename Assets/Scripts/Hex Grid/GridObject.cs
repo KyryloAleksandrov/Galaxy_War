@@ -64,14 +64,8 @@ public class GridObject
         return null;
     }
 
-    public void AddUnit(Transform unitPrefab, UnitType unitType)
+    public void AddShip(Transform unitPrefab)
     {
         listOfShips.Add(unitPrefab.GetComponent<Ship>());
-
-        //Debug.Log("Unit added to grid Object");
-        /*foreach(var unit in listOfShips)
-        {
-            Debug.Log(unit);
-        }*/
     }
 }

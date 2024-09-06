@@ -7,6 +7,8 @@ public class BaseUnit : MonoBehaviour
 {
     protected UnitType unitType;
     [SerializeField] protected MeshRenderer selectedVisual;
+
+    protected GridPosition currentGridPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,14 @@ public class BaseUnit : MonoBehaviour
     public virtual UnitType GetUnitType()
     {
         return unitType;
+    }
+    public virtual GridPosition GetCurrentGridPosition()
+    {
+        return currentGridPosition;
+    }
+    public virtual void SetCurrentGridPosition(GridPosition gridPosition)
+    {
+        this.currentGridPosition = gridPosition;
     }
 
     public virtual void Deselect()

@@ -9,19 +9,15 @@ public interface IUnitService
 {
     List<Ship> listOfShips {get; set;}
     Ship selectedShip {get; set;}
-
-    Action<Transform, UnitType> OnUnitSpawn {get; set;}
     
 
-    void SpawnUnit(Transform unitPrefab, GridPosition gridPosition);
+    void SpawnShip(Transform unitPrefab, GridPosition gridPosition);
     bool TrySelectUnit();
 }
 public class UnitService : IUnitService
 {
     public List<Ship> listOfShips {get; set;}
     public Ship selectedShip {get; set;}
-
-    public Action<Transform, UnitType> OnUnitSpawn {get; set;}
 
     private Vector3 shipSpawnOffset;
 
@@ -38,12 +34,10 @@ public class UnitService : IUnitService
         listOfShips = new List<Ship>();
 
         shipSpawnOffset = new Vector3(0,3,0);
-
-        OnUnitSpawn += AddUnit;
     }
     
 
-    public void SpawnUnit(Transform unitPrefab, GridPosition gridPosition)
+    public void SpawnShip(Transform unitPrefab, GridPosition gridPosition)
     {
         GridObject gridObjectToSpawn = MapFunctionalService.gridSystem.GetGridObject(gridPosition);
 
@@ -55,9 +49,11 @@ public class UnitService : IUnitService
         }
 
         GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
-        gridObjectToSpawn.AddUnit(unitPrefab, GetUnitType(unitPrefab));
-        availableWaypoint.OnShipSpawn(unitPrefab, GetUnitType(unitPrefab));
-        OnUnitSpawn?.Invoke(unitPrefab, GetUnitType(unitPrefab));
+        gridObjectToSpawn.AddShip(unitPrefab);
+        availableWaypoint.AddShip();
+        AddShip(unitPrefab);
+
+        unitPrefab.GetComponent<Ship>().SetCurrentGridPosition(gridPosition);
     }
 
     private UnitType GetUnitType(Transform unitPrefab)
@@ -75,7 +71,7 @@ public class UnitService : IUnitService
         return default;
     }
 
-    public void AddUnit(Transform unitPrefab, UnitType unitType)
+    public void AddShip(Transform unitPrefab)
     {
         listOfShips.Add(unitPrefab.GetComponent<Ship>());
 
