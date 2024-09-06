@@ -19,7 +19,7 @@ public class MouseService : IMouseService
 
     public MouseService(IMapFunctionalService mapFunctionalService, ILayerMasksService layerMasksService)
     {
-        gridSystem = mapFunctionalService.GridSystem;
+        gridSystem = mapFunctionalService.gridSystem;
         hexGridLayerMask = layerMasksService.hexGridMask;
         shipLayerMask = layerMasksService.shipsMask;
     }
@@ -38,10 +38,18 @@ public class MouseService : IMouseService
 
         GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
 
-        Debug.Log(gridObject.ToString());
+        /*Debug.Log(gridObject.ToString());
         foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints())
         {
             Debug.Log(spaceWaypoint.GetHasShip());
+        }*/
+
+        List<GridPosition> neigbours = ProjectContext.Instance.MapFunctionalService.GetNeighbourGridPositions(currentGridPosition, 3);
+        foreach(var position in neigbours)
+        {
+            GridVisual neigbourHex = gridSystem.GetGridObject(position).GetGridVisual();
+            neigbourHex.Highlight();
+            Debug.Log(position.ToString());
         }
     }
 

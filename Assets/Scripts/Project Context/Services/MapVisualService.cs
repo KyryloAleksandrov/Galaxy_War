@@ -31,7 +31,7 @@ public class MapVisualService : IMapVisualService
 
     public void InitializeGridMap(Transform hexPrefab)
     {
-        GridObject[,] gridObjectsArray = MapFunctionalService.GridSystem.GetGridObjectArray();
+        GridObject[,] gridObjectsArray = MapFunctionalService.gridSystem.GetGridObjectArray();
         gridVisualArray = new GridVisual[gridObjectsArray.GetLength(0), gridObjectsArray.GetLength(1)];
 
         for (int x = 0; x < gridObjectsArray.GetLength(0); x++)
@@ -40,12 +40,12 @@ public class MapVisualService : IMapVisualService
             {
                 GridPosition gridPosition = gridObjectsArray[x,z].GetGridPosition();
 
-                Transform gridVisualTransform = GameObject.Instantiate(hexPrefab, MapFunctionalService.GridSystem.GetWorldPosition(gridPosition), Quaternion.identity);
+                Transform gridVisualTransform = GameObject.Instantiate(hexPrefab, MapFunctionalService.gridSystem.GetWorldPosition(gridPosition), Quaternion.identity);
 
                 GridVisual gridVisual = gridVisualTransform.GetComponent<GridVisual>();
                 gridVisualArray[x,z] = gridVisual;
 
-                GridObject gridObject = MapFunctionalService.GridSystem.GetGridObject(gridPosition);
+                GridObject gridObject = MapFunctionalService.gridSystem.GetGridObject(gridPosition);
                 gridObject.SetGridVisual(gridVisual);
                 gridVisual.SetGridObject(gridObject);
                 gridObject.AddSpaceWaypoints(gridVisual);

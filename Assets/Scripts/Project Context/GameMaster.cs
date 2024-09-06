@@ -35,7 +35,7 @@ public class GameMaster : MonoBehaviour
 
         unitService = ProjectContext.Instance.UnitService;
 
-        gridSystem = mapFunctionalService.GridSystem;
+        gridSystem = mapFunctionalService.gridSystem;
         //gridObjects = gridSystem.GetGridObjectArray();
 
         hexPrefab = mapVisualService.hexPrefab;
@@ -54,7 +54,11 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mouseService.IdleCursor();
+        if(unitService.selectedShip == null)
+        {
+            mouseService.IdleCursor();
+        }
+        
 
         if(Input.GetMouseButtonDown(0))
         {

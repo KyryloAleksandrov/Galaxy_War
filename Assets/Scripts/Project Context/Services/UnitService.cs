@@ -45,7 +45,7 @@ public class UnitService : IUnitService
 
     public void SpawnUnit(Transform unitPrefab, GridPosition gridPosition)
     {
-        GridObject gridObjectToSpawn = MapFunctionalService.GridSystem.GetGridObject(gridPosition);
+        GridObject gridObjectToSpawn = MapFunctionalService.gridSystem.GetGridObject(gridPosition);
 
         SpaceWaypoint availableWaypoint = gridObjectToSpawn.GetAvailableSpaceWaypoint();
 

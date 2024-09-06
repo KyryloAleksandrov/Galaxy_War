@@ -11,7 +11,7 @@ public class MouseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridSystem = ProjectContext.Instance.MapFunctionalService.GridSystem;
+        gridSystem = ProjectContext.Instance.MapFunctionalService.gridSystem;
     }
 
     // Update is called once per frame
