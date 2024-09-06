@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveAction : BaseAction
@@ -49,6 +50,15 @@ public class MoveAction : BaseAction
 
     public void Move(GridPosition gridPosition)
     {
+        GridObject gridObjectToMove = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(gridPosition);
+
+        SpaceWaypoint availableWaypoint = gridObjectToMove.GetAvailableSpaceWaypoint();
+
+        if(availableWaypoint == null)
+        {
+            return;
+        }
+        //finish writing this
         //destination = newWaypoint.transform.position + shipYOffset;
         isActive = true;
     }

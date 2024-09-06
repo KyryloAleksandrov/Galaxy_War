@@ -108,4 +108,12 @@ public class UnitService : IUnitService
         }
         return false;
     }
+
+    public void MoveShip()
+    {
+        if(selectedShip == null)
+        {
+            return;
+        }
+    }
 }
