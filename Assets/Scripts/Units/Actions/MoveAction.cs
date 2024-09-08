@@ -44,30 +44,47 @@ public class MoveAction : BaseAction
         }
         else
         {
+            ship.Select();
             isActive = false;
         }
     }
 
     public void Move(GridPosition gridPosition)
     {
+        List<GridPosition> availableMoves = ship.GetAvailableMovesList();
+
+        if(!availableMoves.Contains(gridPosition))
+        {
+            Debug.Log("Position is not valid");
+            return;
+        }
+
         GridObject gridObjectToMove = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(gridPosition);
 
         SpaceWaypoint availableWaypoint = gridObjectToMove.GetAvailableSpaceWaypoint();
 
         if(availableWaypoint == null)
         {
+            Debug.Log("No free waypoint");
             return;
         }
         //finish writing this
-        //destination = newWaypoint.transform.position + shipYOffset;
+        ship.Deselect();
+        GridObject currentGridObject = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(ship.GetCurrentGridPosition());
+        currentGridObject.RemoveShip(ship);
+        ship.GetCurrentSpaceWaypoint().RemoveShip();
+
+        gridObjectToMove.AddShip(ship);
+        availableWaypoint.AddShip();
+        ship.SetCurrentGridPosition(gridPosition);
+        
+        destination = availableWaypoint.transform.position + shipYOffset;
         isActive = true;
     }
 
     public List<GridPosition> GetValidGridPositionsList()
     {
         List<GridPosition> validGridPositions = new List<GridPosition>();
-
-
 
 
         return validGridPositions;

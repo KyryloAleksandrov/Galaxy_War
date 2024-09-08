@@ -13,6 +13,7 @@ public interface IUnitService
 
     void SpawnShip(Transform unitPrefab, GridPosition gridPosition);
     bool TrySelectUnit();
+    void MoveShip();
 }
 public class UnitService : IUnitService
 {
@@ -48,12 +49,13 @@ public class UnitService : IUnitService
             return;
         }
 
-        GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
-        gridObjectToSpawn.AddShip(unitPrefab);
-        availableWaypoint.AddShip();
-        AddShip(unitPrefab);
+        Transform newShip = GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
+        gridObjectToSpawn.AddShip(newShip.GetComponent<Ship>());
+        availableWaypoint.AddShip();    //it just toggles true false
+        AddShip(newShip);
 
-        unitPrefab.GetComponent<Ship>().SetCurrentGridPosition(gridPosition);
+        newShip.GetComponent<Ship>().SetCurrentGridPosition(gridPosition);
+        newShip.GetComponent<Ship>().SetCurrentSpaceWaypoint(availableWaypoint);
     }
 
     private UnitType GetUnitType(Transform unitPrefab)
@@ -115,5 +117,9 @@ public class UnitService : IUnitService
         {
             return;
         }
+
+        GridPosition mousePosition = MapFunctionalService.gridSystem.GetHexGridPosition(MouseService.GetMouseWorldPosition());
+
+        selectedShip.GetMoveAction().Move(mousePosition);
     }
 }

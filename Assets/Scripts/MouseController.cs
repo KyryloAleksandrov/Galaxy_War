@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseController : MonoBehaviour
+public class MouseController : MonoBehaviour    //DEPRECATED
 {
     [SerializeField] private LayerMask hexGridLayerMask;
     private GridSystem gridSystem;
@@ -25,6 +25,7 @@ public class MouseController : MonoBehaviour
         
         HighlightOnHover(GetFirstLayerMask());
     }
+
     public void ClickOnHex()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

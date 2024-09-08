@@ -64,8 +64,13 @@ public class GridObject
         return null;
     }
 
-    public void AddShip(Transform unitPrefab)
+    public void AddShip(Ship ship)
     {
-        listOfShips.Add(unitPrefab.GetComponent<Ship>());
+        listOfShips.Add(ship);
+    }
+
+    public void RemoveShip(Ship ship)
+    {
+        listOfShips.Remove(ship);
     }
 }

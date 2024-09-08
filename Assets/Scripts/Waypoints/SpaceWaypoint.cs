@@ -28,4 +28,9 @@ public class SpaceWaypoint : BaseWaypoint
     {
         hasShip = true;
     }
+
+    public void RemoveShip()
+    {
+        hasShip = false;
+    }
 }

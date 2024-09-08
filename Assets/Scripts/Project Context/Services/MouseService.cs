@@ -9,6 +9,7 @@ public interface IMouseService
     LayerMask shipLayerMask {get; set;}
     void IdleCursor();
     LayerMask GetFirstLayerMask();
+    Vector3 GetMouseWorldPosition();
 }
 public class MouseService : IMouseService
 {
@@ -22,6 +23,13 @@ public class MouseService : IMouseService
         gridSystem = mapFunctionalService.gridSystem;
         hexGridLayerMask = layerMasksService.hexGridMask;
         shipLayerMask = layerMasksService.shipsMask;
+    }
+
+    public Vector3 GetMouseWorldPosition()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, hexGridLayerMask);
+        return raycastHit.point;
     }
 
     public void ClickOnHex()

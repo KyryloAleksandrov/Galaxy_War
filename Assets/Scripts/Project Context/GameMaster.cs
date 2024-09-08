@@ -49,9 +49,24 @@ public class GameMaster : MonoBehaviour
     void Start()
     {
         unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(3, 4));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+
         unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(4, 2));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 2));
     }
 
     // Update is called once per frame
@@ -66,6 +81,11 @@ public class GameMaster : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             if(unitService.TrySelectUnit()) return;
+        }
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            unitService.MoveShip();
         }
 
 
