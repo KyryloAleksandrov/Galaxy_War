@@ -248,6 +248,7 @@ MonoBehaviour:
   MapConfig: {fileID: 11400000, guid: 03d9a8f5545f656498a820b48f16f638, type: 2}
   UnitConfig: {fileID: 11400000, guid: 67a5b7d150c72814ea1cc9a4421b5d86, type: 2}
   layerMasksConfig: {fileID: 11400000, guid: d789f2028f95edb4391a6fc50d87ca9b, type: 2}
+  playerConfig: {fileID: 11400000, guid: becadcd5442b46346844c48a2f4b44b2, type: 2}
 --- !u!4 &841576560
 Transform:
   m_ObjectHideFlags: 0

@@ -48,25 +48,25 @@ public class GameMaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
 
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
 
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 2));
+        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 2), PlayerType.PlayerTwo);
     }
 
     // Update is called once per frame
@@ -89,10 +89,10 @@ public class GameMaster : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.L))     //debug
+        /*if(Input.GetKeyDown(KeyCode.L))     //debug
         {
             unitService.SpawnShip(shiptoSpawn, new GridPosition(0, 0));
             return;
-        }
+        }*/
     }
 }

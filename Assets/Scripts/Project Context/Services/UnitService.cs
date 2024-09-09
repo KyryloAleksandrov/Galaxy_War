@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -11,7 +12,7 @@ public interface IUnitService
     Ship selectedShip {get; set;}
     
 
-    void SpawnShip(Transform unitPrefab, GridPosition gridPosition);
+    void SpawnShip(Transform unitPrefab, GridPosition gridPosition, PlayerType playerType);
     bool TrySelectUnit();
     void MoveShip();
 }
@@ -25,20 +26,22 @@ public class UnitService : IUnitService
     private IMapFunctionalService MapFunctionalService;
     private IConfigService ConfigService;
     private IMouseService MouseService;
+    private IPlayerService PlayerService;
     
 
-    public UnitService(IMapFunctionalService MapFunctionalService, IConfigService ConfigService, IMouseService MouseService)
+    public UnitService(IMapFunctionalService MapFunctionalService, IConfigService ConfigService, IMouseService MouseService, IPlayerService PlayerService)
     {
         this.MapFunctionalService = MapFunctionalService;
         this.ConfigService = ConfigService;
         this.MouseService = MouseService;
+        this.PlayerService = PlayerService;
         listOfShips = new List<Ship>();
 
         shipSpawnOffset = new Vector3(0,3,0);
     }
     
 
-    public void SpawnShip(Transform unitPrefab, GridPosition gridPosition)
+    public void SpawnShip(Transform unitPrefab, GridPosition gridPosition, PlayerType playerType)
     {
         GridObject gridObjectToSpawn = MapFunctionalService.gridSystem.GetGridObject(gridPosition);
 
@@ -50,6 +53,7 @@ public class UnitService : IUnitService
         }
 
         Transform newShip = GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
+        SetMaterialsForSpawn(newShip, playerType);
         gridObjectToSpawn.AddShip(newShip.GetComponent<Ship>());
         availableWaypoint.AddShip();    //it just toggles true false
         AddShip(newShip);
@@ -121,5 +125,17 @@ public class UnitService : IUnitService
         GridPosition mousePosition = MapFunctionalService.gridSystem.GetHexGridPosition(MouseService.GetMouseWorldPosition());
 
         selectedShip.GetMoveAction().Move(mousePosition);
+    }
+
+    public void SetMaterialsForSpawn(Transform unit, PlayerType playerType)
+    {
+        Renderer[] childRenderers = unit.GameObject().GetComponentsInChildren<Renderer>();
+
+        Material materialToSpawn = PlayerService.GetPlayer(playerType).GetPlayerMaterial();
+
+        foreach(Renderer renderer in childRenderers)
+        {
+            renderer.material = materialToSpawn;
+        }
     }
 }
