@@ -54,7 +54,8 @@ public class UnitService : IUnitService
 
         Transform newShip = GameObject.Instantiate(unitPrefab, availableWaypoint.transform.position + shipSpawnOffset, Quaternion.identity);
         SetMaterialsForSpawn(newShip, playerType);
-        gridObjectToSpawn.AddShip(newShip.GetComponent<Ship>());
+        newShip.GetComponent<Ship>().SetPlayerType(playerType);
+        gridObjectToSpawn.AddShip(newShip.GetComponent<Ship>(), playerType);
         availableWaypoint.AddShip();    //it just toggles true false
         AddShip(newShip);
 

@@ -46,6 +46,15 @@ public class MouseService : IMouseService
 
         GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
 
+        foreach(var keyValue in gridObject.GetlistOfShips())
+        {
+            Debug.Log(keyValue.Key);
+            foreach(var ship in keyValue.Value)
+            {
+                Debug.Log(ship);
+            }
+        }
+
         /*Debug.Log(gridObject.ToString());
         foreach(var spaceWaypoint in gridObject.GetSpaceWaypoints())
         {

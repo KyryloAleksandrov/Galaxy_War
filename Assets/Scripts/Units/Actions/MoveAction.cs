@@ -71,10 +71,10 @@ public class MoveAction : BaseAction
         //finish writing this
         ship.Deselect();
         GridObject currentGridObject = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(ship.GetCurrentGridPosition());
-        currentGridObject.RemoveShip(ship);
+        currentGridObject.RemoveShip(ship, ship.GetPlayerType());
         ship.GetCurrentSpaceWaypoint().RemoveShip();
 
-        gridObjectToMove.AddShip(ship);
+        gridObjectToMove.AddShip(ship, ship.GetPlayerType());
         availableWaypoint.AddShip();
         ship.SetCurrentGridPosition(gridPosition);
         

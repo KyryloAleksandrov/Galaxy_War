@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 
 public class BaseUnit : MonoBehaviour
 {
+    protected PlayerType playerType;
     protected UnitType unitType;
     [SerializeField] protected MeshRenderer selectedVisual;
 
@@ -19,6 +20,14 @@ public class BaseUnit : MonoBehaviour
     void Update()
     {
         
+    }
+    public virtual PlayerType GetPlayerType()
+    {
+        return playerType;
+    }
+    public virtual void SetPlayerType(PlayerType playerType)
+    {
+        this.playerType = playerType;
     }
 
     public virtual UnitType GetUnitType()

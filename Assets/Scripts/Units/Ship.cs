@@ -64,7 +64,7 @@ public class Ship : BaseUnit
         foreach(var position in hexesInMoveRange)
         {
             GridObject toTest = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(position);
-            if(toTest.GetAvailableSpaceWaypoint() != null)
+            if(toTest.GetAvailableSpaceWaypoint() != null && !toTest.IsFullForThePlayer(playerType))
             {
                 availableMoves.Add(position);
             }

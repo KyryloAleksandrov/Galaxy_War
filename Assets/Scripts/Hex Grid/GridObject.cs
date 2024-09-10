@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class GridObject
 {
+    private int shipLimitPerPlayer;
     private GridSystem gridSystem;
     private GridPosition gridPosition;
     private GridVisual gridVisual;
 
     private List<SpaceWaypoint> spaceWaypoints;
-    private List<Ship> listOfShips;
+    private Dictionary<PlayerType, List<Ship>> listOfShips;
     private const int SPACE_WAYPOINT_LIMIT = 8;
 
     public GridObject(GridSystem gridSystem, GridPosition gridPosition)
@@ -17,7 +18,9 @@ public class GridObject
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
         spaceWaypoints = new List<SpaceWaypoint>();
-        listOfShips = new List<Ship>();
+        listOfShips = new Dictionary<PlayerType, List<Ship>>();
+
+        shipLimitPerPlayer = 4;
     }
 
     public GridPosition GetGridPosition()
@@ -51,6 +54,10 @@ public class GridObject
         }
     }
     
+    public Dictionary<PlayerType, List<Ship>> GetlistOfShips()
+    {
+        return listOfShips;
+    }
     public SpaceWaypoint GetAvailableSpaceWaypoint()
     {
         foreach(var spaceWaypoint in spaceWaypoints)
@@ -64,13 +71,32 @@ public class GridObject
         return null;
     }
 
-    public void AddShip(Ship ship)
+    public void AddShip(Ship ship, PlayerType playerType)
     {
-        listOfShips.Add(ship);
+        if(!listOfShips.ContainsKey(playerType))
+        {
+            List<Ship> shipsOfThePlayer = new List<Ship>();
+            listOfShips.Add(playerType, shipsOfThePlayer);
+        }
+        listOfShips[playerType].Add(ship);
     }
 
-    public void RemoveShip(Ship ship)
+    public void RemoveShip(Ship ship, PlayerType playerType)
     {
-        listOfShips.Remove(ship);
+        listOfShips[playerType].Remove(ship);
+    }
+
+    public bool IsFullForThePlayer(PlayerType playerType)
+    {
+        if(!listOfShips.ContainsKey(playerType))
+        {
+            return false;
+        }
+        if(listOfShips[playerType].Count < shipLimitPerPlayer)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

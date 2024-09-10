@@ -52,15 +52,7 @@ public class GameMaster : MonoBehaviour
         unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
         unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
         unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(2, 3), PlayerType.PlayerOne);
-
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
-        unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
+        
         unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
         unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
         unitService.SpawnShip(shiptoSpawn, new GridPosition(1, 3), PlayerType.PlayerTwo);
