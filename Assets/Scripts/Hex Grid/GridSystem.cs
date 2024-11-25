@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridSystem
+public class GridSystem<TGridObject>
 {
     private const float HEX_X_OFFSET_MULTIPLIER = .5f;
     private const float HEX_Z_OFFSET_MULTIPLIER = .75f;
@@ -11,17 +12,17 @@ public class GridSystem
     private int height;
     private float hexSize;
 
-    private GridObject[,] gridObjectArray;
+    private TGridObject[,] gridObjectArray;
     private List<GridPosition> gridPositionsList;
     private List<Vector3Int> neighbourHexesList;
 
-    public GridSystem(int width, int height, float hexSize)
+    public GridSystem(int width, int height, float hexSize, Func<GridSystem<TGridObject>, GridPosition, TGridObject> createGridObject)
     {
         this.width = width;
         this.height = height;
         this.hexSize = hexSize;
 
-        gridObjectArray = new GridObject[width, height];
+        gridObjectArray = new TGridObject[width, height];
         gridPositionsList = new List<GridPosition>();
 
         for(int x = 0; x < width; x++)
@@ -29,7 +30,7 @@ public class GridSystem
             for (int z = 0; z < height; z++)
             {
                 GridPosition gridPosition = new GridPosition(x, z);
-                gridObjectArray[x,z] = new GridObject(this, gridPosition);
+                gridObjectArray[x,z] = createGridObject(this, gridPosition);
                 gridPositionsList.Add(gridPosition);
             }
         }
@@ -84,11 +85,11 @@ public class GridSystem
                 Transform coordinates = GameObject.Instantiate(coordinatesPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
 
                 MapGridCoordinates mapGridCoordinates = coordinates.GetComponent<MapGridCoordinates>();
-                mapGridCoordinates.SetCoordinates(GetGridObject(gridPosition));
+                mapGridCoordinates.SetCoordinates(GetGridObject(gridPosition) as GridObject);
             }
         }
     }
-    public GridObject GetGridObject(GridPosition gridPosition)
+    public TGridObject GetGridObject(GridPosition gridPosition)
     {
         if(IsInBounds(gridPosition))
         {
@@ -96,7 +97,7 @@ public class GridSystem
         }
         else
         {
-            return null;
+            return default;
         }
     }
     public bool IsInBounds(GridPosition gridPosition)
@@ -119,7 +120,7 @@ public class GridSystem
     {
         return height;
     }
-    public GridObject[,] GetGridObjectArray()
+    public TGridObject[,] GetGridObjectArray()
     {
         return gridObjectArray;
     }

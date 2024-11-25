@@ -6,19 +6,19 @@ using UnityEngine;
 
 public interface IMapFunctionalService
 {
-    GridSystem gridSystem {get;}
+    GridSystem<GridObject> gridSystem {get;}
 
     List<GridPosition> GetNeighbourGridPositions(GridPosition gridPosition);
     List<GridPosition> GetNeighbourGridPositions(GridPosition gridPosition, int radius);
 }
 public class MapFunctionalService : IMapFunctionalService
 {
-    public GridSystem gridSystem {get; private set;}
+    public GridSystem<GridObject> gridSystem {get; private set;}
 
     public MapFunctionalService(IConfigService ConfigService)
     {
         var MapData = ConfigService.MapData;
-        gridSystem = new GridSystem(MapData.width, MapData.height, MapData.hexSize);
+        gridSystem = new GridSystem<GridObject>(MapData.width, MapData.height, MapData.hexSize, (GridSystem<GridObject> gridSystem, GridPosition gridPosition) => new GridObject(gridSystem, gridPosition));
     }
 
     public List<GridPosition> GetNeighbourGridPositions(GridPosition gridPosition)

@@ -15,7 +15,7 @@ public class MouseService : IMouseService
 {
     public LayerMask hexGridLayerMask {get; set;}
     public LayerMask shipLayerMask {get; set;}
-    private GridSystem gridSystem;
+    private GridSystem<GridObject> gridSystem;
     private GridVisual lastGridVisual;
 
     public MouseService(IMapFunctionalService mapFunctionalService, ILayerMasksService layerMasksService)

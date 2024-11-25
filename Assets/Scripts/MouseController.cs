@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class MouseController : MonoBehaviour    //DEPRECATED
 {
     [SerializeField] private LayerMask hexGridLayerMask;
-    private GridSystem gridSystem;
+    private GridSystem<GridObject> gridSystem;
     private GridVisual lastGridVisual;
     // Start is called before the first frame update
     void Start()

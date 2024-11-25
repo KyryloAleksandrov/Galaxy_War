@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridObject
 {
     private int shipLimitPerPlayer;
-    private GridSystem gridSystem;
+    private GridSystem<GridObject> gridSystem;
     private GridPosition gridPosition;
     private GridVisual gridVisual;
 
@@ -13,7 +13,7 @@ public class GridObject
     private Dictionary<PlayerType, List<Ship>> listOfShips;
     private const int SPACE_WAYPOINT_LIMIT = 8;
 
-    public GridObject(GridSystem gridSystem, GridPosition gridPosition)
+    public GridObject(GridSystem<GridObject> gridSystem, GridPosition gridPosition)
     {
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;

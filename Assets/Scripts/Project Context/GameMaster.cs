@@ -12,7 +12,7 @@ public class GameMaster : MonoBehaviour
     private IUnitService unitService;
     private IMouseService mouseService;
 
-    private GridSystem gridSystem;
+    private GridSystem<GridObject> gridSystem;
     //private GridObject[,] gridObjects;  //not sure if I need this one  
 
     private Transform coordinatesPrefab;
