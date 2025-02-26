@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,25 @@ public interface IMapFunctionalService
 
     List<GridPosition> GetNeighbourGridPositions(GridPosition gridPosition);
     List<GridPosition> GetNeighbourGridPositions(GridPosition gridPosition, int radius);
+
+    GridSystem<T> CreateGridSystem<T>(Func<GridSystem<T>, GridPosition, T> createGridObject);
 }
 public class MapFunctionalService : IMapFunctionalService
 {
     public GridSystem<GridObject> gridSystem {get; private set;}
 
+    public int width;
+    public int height;
+    public float hexSize;
+
     public MapFunctionalService(IConfigService ConfigService)
     {
         var MapData = ConfigService.MapData;
+
+        width = MapData.width;
+        height = MapData.height;
+        hexSize = MapData.hexSize;
+
         gridSystem = new GridSystem<GridObject>(MapData.width, MapData.height, MapData.hexSize, (GridSystem<GridObject> gridSystem, GridPosition gridPosition) => new GridObject(gridSystem, gridPosition));
     }
 
@@ -91,5 +103,10 @@ public class MapFunctionalService : IMapFunctionalService
         };
 
         return positionsToTest;
+    }
+
+    public GridSystem<T> CreateGridSystem<T>(Func<GridSystem<T>, GridPosition, T> createGridObject)
+    {
+        return new GridSystem<T>(width, height, hexSize, createGridObject);
     }
 }

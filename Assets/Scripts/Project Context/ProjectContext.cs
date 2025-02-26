@@ -19,6 +19,7 @@ public class ProjectContext
 
     public IMapFunctionalService MapFunctionalService {get; private set;}
     public IMapVisualService MapVisualService {get; private set;}
+    public IPathfindingService PathfindingService {get; private set;}
 
     public IPlayerService PlayerService {get; private set;}
     public IUnitService UnitService {get; private set;}
@@ -31,6 +32,7 @@ public class ProjectContext
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
         MapVisualService = new MapVisualService(MapFunctionalService, ConfigService);
+        PathfindingService = new PathfindingService(ConfigService, MapFunctionalService);
 
         PlayerService = new PlayerService(ConfigService, MapFunctionalService);
         LayerMasksService = new LayerMasksService(ConfigService);
