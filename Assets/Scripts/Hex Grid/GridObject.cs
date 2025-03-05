@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GridObject {
+public abstract class GridObject : MonoBehaviour
+{
     //private GridSystem<GridObject> gridSystem;
-    private GridPosition gridPosition;
+    protected GridPosition gridPosition;
 
     public GridObject(GridPosition gridPosition)
     {

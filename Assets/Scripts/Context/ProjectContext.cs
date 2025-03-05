@@ -15,8 +15,17 @@ public class ProjectContext
         }
     }
 
-    public void Initialize()
+    public IConfigService ConfigService {get; private set;}
+
+    public IMapBackendGenerationService MapBackendGenerationService {get; private set;}
+    public IMapFrontendGenerationService MapFrontendGenerationService {get; private set;}
+
+    public void Initialize(MapConfig mapConfig)
     {
+        ConfigService = new ConfigService(mapConfig);
+
+        MapBackendGenerationService = new MapBackendGenerationService(ConfigService);
+        MapFrontendGenerationService = new MapFrontendGenerationService(MapBackendGenerationService, ConfigService);
         Debug.Log("Initialized");
     }
 }
